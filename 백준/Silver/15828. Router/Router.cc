@@ -9,21 +9,25 @@ int main(void)
     int n;
     cin >> n;
     int q_val = 0;
-    while(q_val != -1)
+    // q size는 n
+    while(1)
     {
         cin >> q_val;
-        if(q_val != 0 && q_val != -1)
+        if(q_val == 0)
         {
+            if(!q.empty()) q.pop();
+        } else if(q_val == -1){
+            break;
+        } else if(q_val > 0 && (q.size() < n)){
             q.push(q_val);
         }
-        else if(q_val == 0){
+    }
+    //q.pop();
+    if(q.empty()) cout << "empty";
+    else {
+        while(!q.empty()){
+            cout << q.front() << " ";
             q.pop();
         }
-    }
-    int size = q.size();
-    for(int i = 0; i < size; i++)
-    {
-        cout << q.front() << " ";
-        q.pop();
     }
 }
